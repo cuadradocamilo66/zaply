@@ -1,0 +1,432 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+  }
+}
+
+.template-card-hover-effect {
+  @apply transition-all duration-300;
+}
+
+.template-card-hover-effect:hover {
+  @apply transform -translate-y-1 shadow-lg;
+}
+
+.video-hover-container:hover .video-preview {
+  @apply opacity-100;
+}
+
+.video-preview {
+  @apply opacity-0 transition-opacity duration-300;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent;
+}
+
+.dark .gradient-text {
+  @apply bg-gradient-to-r from-purple-400 to-pink-600;
+}
+
+.light .gradient-text {
+  @apply bg-gradient-to-r from-purple-700 to-pink-800;
+}
+
+/* Nuevos estilos para el hero */
+.bg-gradient-radial {
+  background-image: radial-gradient(var(--tw-gradient-stops));
+}
+
+/* Animaciones para elementos al hacer scroll */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animate-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animate-delay-300 {
+  animation-delay: 300ms;
+}
+
+/* Animación para partículas flotantes */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-15px) translateX(10px);
+  }
+  50% {
+    transform: translateY(-25px) translateX(-10px);
+  }
+  75% {
+    transform: translateY(-10px) translateX(15px);
+  }
+}
+
+/* Estilos para el contenido del hero */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.hero-content:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el efecto de glass morphism */
+.glass-effect {
+  @apply backdrop-blur-md bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10 rounded-xl;
+}
+
+/* Estilos para la sección de Spline */
+.spline-container {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.spline-container:hover .spline-overlay {
+  opacity: 0;
+}
+
+.spline-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Asegurarse de que el footer tenga un z-index mayor que el contenido de Spline */
+footer {
+  position: relative;
+  z-index: 20;
+  background-color: var(--background);
+}
+
+/* Asegurarse de que el contenido principal tenga un z-index mayor que el contenido de Spline */
+main {
+  position: relative;
+  z-index: 10;
+}
+
+/* Asegurarse de que el contenido de Spline no se superponga a otros elementos */
+.spline-scene-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Permitir eventos de mouse solo en la página de contacto */
+.contact-page .spline-scene-container {
+  pointer-events: auto;
+}
+
+/* Asegurarse de que el footer tenga un fondo sólido para que no se vea el contenido de Spline a través de él */
+footer {
+  background-color: hsl(var(--background));
+  position: relative;
+  z-index: 20;
+}
+
+/* Asegurarse de que el header tenga un fondo sólido para que no se vea el contenido de Spline a través de él */
+header {
+  background-color: hsl(var(--background));
+  position: relative;
+  z-index: 20;
+}
+
+/* Estilos específicos para el hero con Spline */
+.hero-spline-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Asegurarse de que el texto del hero sea legible sobre el fondo de Spline */
+.hero-text {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo para los botones del hero */
+.hero-button {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Estilos para la transición de tema */
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Estilos específicos para el modo claro */
+.light .header-transparent {
+  @apply bg-white/80 backdrop-blur-md;
+}
+
+.light .footer-bg {
+  @apply bg-gray-50;
+}
+
+/* Estilos específicos para el modo oscuro */
+.dark .header-transparent {
+  @apply bg-gray-900/80 backdrop-blur-md;
+}
+
+.dark .footer-bg {
+  @apply bg-gray-900;
+}
+
+/* Estilos para el botón de cambio de tema */
+.theme-toggle-btn {
+  @apply relative overflow-hidden;
+}
+
+.theme-icon {
+  @apply absolute inset-0 flex items-center justify-center transition-all duration-300;
+}
+
+.theme-icon-sun {
+  @apply transform rotate-0 scale-100 dark:rotate-90 dark:scale-0;
+}
+
+.theme-icon-moon {
+  @apply transform rotate-90 scale-0 dark:rotate-0 dark:scale-100;
+}
+
+/* Nuevos estilos para los testimonios con efecto neón */
+.neon-glow-purple {
+  box-shadow: 0 0 15px 2px rgba(139, 92, 246, 0.3), 0 0 30px 5px rgba(139, 92, 246, 0.1);
+  transform: translateY(-5px);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.dark-hover-card {
+  background-color: rgba(30, 27, 45, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.light-hover-card {
+  background-color: rgba(250, 245, 255, 0.9);
+  box-shadow: 0 10px 25px -5px rgba(139, 92, 246, 0.2), 0 8px 10px -6px rgba(139, 92, 246, 0.1);
+  transform: translateY(-5px);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+/* Animación de pulso para el efecto neón */
+@keyframes pulse-purple {
+  0%,
+  100% {
+    box-shadow: 0 0 15px 2px rgba(139, 92, 246, 0.3), 0 0 30px 5px rgba(139, 92, 246, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px 5px rgba(139, 92, 246, 0.4), 0 0 40px 8px rgba(139, 92, 246, 0.2);
+  }
+}
+
+.neon-glow-purple {
+  animation: pulse-purple 3s infinite ease-in-out;
+}
+
+/* Estilos para las plantillas destacadas (azul) */
+.neon-glow-blue {
+  box-shadow: 0 0 15px 2px rgba(59, 130, 246, 0.3), 0 0 30px 5px rgba(59, 130, 246, 0.1);
+  transform: translateY(-5px);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.dark-hover-card-blue {
+  background-color: rgba(23, 37, 84, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.light-hover-card-blue {
+  background-color: rgba(239, 246, 255, 0.9);
+  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.2), 0 8px 10px -6px rgba(59, 130, 246, 0.1);
+  transform: translateY(-5px);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+@keyframes pulse-blue {
+  0%,
+  100% {
+    box-shadow: 0 0 15px 2px rgba(59, 130, 246, 0.3), 0 0 30px 5px rgba(59, 130, 246, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px 5px rgba(59, 130, 246, 0.4), 0 0 40px 8px rgba(59, 130, 246, 0.2);
+  }
+}
+
+.neon-glow-blue {
+  animation: pulse-blue 3s infinite ease-in-out;
+}
+
+/* Estilos para las plantillas gratuitas (verde) */
+.neon-glow-green {
+  box-shadow: 0 0 15px 2px rgba(34, 197, 94, 0.3), 0 0 30px 5px rgba(34, 197, 94, 0.1);
+  transform: translateY(-5px);
+  border-color: rgba(34, 197, 94, 0.5);
+}
+
+.dark-hover-card-green {
+  background-color: rgba(20, 83, 45, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.light-hover-card-green {
+  background-color: rgba(240, 253, 244, 0.9);
+  box-shadow: 0 10px 25px -5px rgba(34, 197, 94, 0.2), 0 8px 10px -6px rgba(34, 197, 94, 0.1);
+  transform: translateY(-5px);
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+@keyframes pulse-green {
+  0%,
+  100% {
+    box-shadow: 0 0 15px 2px rgba(34, 197, 94, 0.3), 0 0 30px 5px rgba(34, 197, 94, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px 5px rgba(34, 197, 94, 0.4), 0 0 40px 8px rgba(34, 197, 94, 0.2);
+  }
+}
+
+.neon-glow-green {
+  animation: pulse-green 3s infinite ease-in-out;
+}
+
+/* Estilos para las categorías (ámbar) */
+.neon-glow-amber {
+  box-shadow: 0 0 15px 2px rgba(245, 158, 11, 0.3), 0 0 30px 5px rgba(245, 158, 11, 0.1);
+  transform: translateY(-5px);
+  border-color: rgba(245, 158, 11, 0.5);
+}
+
+.dark-hover-card-amber {
+  background-color: rgba(120, 53, 15, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.light-hover-card-amber {
+  background-color: rgba(255, 251, 235, 0.9);
+  box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.2), 0 8px 10px -6px rgba(245, 158, 11, 0.1);
+  transform: translateY(-5px);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+@keyframes pulse-amber {
+  0%,
+  100% {
+    box-shadow: 0 0 15px 2px rgba(245, 158, 11, 0.3), 0 0 30px 5px rgba(245, 158, 11, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px 5px rgba(245, 158, 11, 0.4), 0 0 40px 8px rgba(245, 158, 11, 0.2);
+  }
+}
+
+.neon-glow-amber {
+  animation: pulse-amber 3s infinite ease-in-out;
+}
+
+/* Estilos para botones principales (rosa) */
+@keyframes pulse-pink {
+  0%,
+  100% {
+    box-shadow: 0 0 15px 2px rgba(236, 72, 153, 0.3), 0 0 30px 5px rgba(236, 72, 153, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px 5px rgba(236, 72, 153, 0.4), 0 0 40px 8px rgba(236, 72, 153, 0.2);
+  }
+}
+
+.neon-glow-pink {
+  animation: pulse-pink 3s infinite ease-in-out;
+  box-shadow: 0 0 15px 2px rgba(236, 72, 153, 0.3), 0 0 30px 5px rgba(236, 72, 153, 0.1);
+}
