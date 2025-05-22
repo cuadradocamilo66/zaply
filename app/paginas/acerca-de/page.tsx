@@ -87,8 +87,7 @@ export default async function AcercaDePage() {
         <h1 className="text-4xl font-bold mb-8 text-center">Sobre Zaply</h1>
 
         <p className="mb-6">
-          Zaply es una empresa especializada en plantillas profesionales para After Effects, fundada por dos apasionados
-          del diseño y la animación digital.
+          Zaply es una empresa dedicada a la creación de plantillas profesionales para After Effects, fundada por dos entusiastas del diseño y la animación digital que buscan simplificar y potenciar el trabajo creativo de otros profesionales.
         </p>
 
         <h2 className="text-2xl font-bold mt-10 mb-4">Nuestro Equipo</h2>
